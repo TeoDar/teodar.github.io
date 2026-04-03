@@ -1,0 +1,311 @@
+:root {
+  --bg: #282c34;
+  --sidebar: #21252b;
+  --text: #abb2bf;
+  --accent: #61afef;
+  --green: #98c379;
+  --border: #181a1f;
+}
+
+body {
+  margin: 0;
+  font-family: Consolas, monospace;
+  background: var(--bg);
+  color: var(--text);
+  display: flex;
+  height: 100vh;
+}
+
+.activity-bar {
+  width: 50px;
+  background: #1f2127;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5px 0;
+  border-right: 1px solid var(--border);
+}
+
+.activity-bar-bottom {
+  margin-top: auto;
+}
+
+.activity-bar .codicon {
+  font-size: 22px !important;
+  color: #6b717d;
+  margin: 10px 0;
+  cursor: pointer;
+  transition:
+    color 0.2s,
+    background 0.2s;
+  width: 100%;
+  text-align: center;
+  padding: 6px 0;
+}
+
+.activity-bar .codicon:hover {
+  color: white;
+
+  border-radius: 4px;
+}
+
+.activity-bar .codicon.active {
+  color: white;
+  background: #2c313c;
+  border-radius: 4px;
+}
+
+.github {
+  color: #6538b9 !important;
+}
+
+.sidebar {
+  width: 140px;
+  background: var(--sidebar);
+  border-right: 1px solid var(--border);
+}
+
+.sidebar h3 {
+  font-size: 12px;
+  text-transform: uppercase;
+  color: #6b717d;
+  margin: 10px 6px;
+}
+
+.file {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 8px;
+  cursor: pointer;
+  background: none;
+}
+
+.file .codicon {
+  font-size: 16px;
+  flex-shrink: 0;
+  color: #abb2bf;
+}
+
+.file .codicon-markdown {
+  color: #42a5f5;
+}
+
+.file .codicon-json {
+  color: #f9a825;
+}
+
+.file .codicon-briefcase {
+  color: #3eaa91;
+}
+
+.file .codicon-file-media {
+  color: #a61508;
+}
+
+.file:hover {
+  background: #2c313c;
+}
+
+.file.active {
+  background: #373c49;
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.tabs {
+  display: flex;
+  background: var(--tab);
+  border-bottom: 1px solid var(--border);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.tab {
+  display: flex;
+  align-items: center;
+  padding: 6px 10px;
+  border-right: 1px solid #2c313c;
+  background: #1e222a;
+  cursor: pointer;
+  gap: 6px;
+}
+
+.close {
+  font-size: 12px;
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+.close:hover {
+  opacity: 1;
+}
+
+.editor {
+  padding: 20px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+@media (max-width: 480px) {
+  .editor {
+    padding: 8px;
+    font-size: 12px;
+  }
+}
+
+.statusbar {
+  height: 22px;
+  background: #21252b;
+  border-top: 1px solid var(--border);
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  color: #6b717d;
+}
+
+.statusbar .status-right {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  white-space: nowrap;
+  font-size: 12px;
+}
+
+.statusbar .status-right .codicon {
+  font-size: 12px;
+  vertical-align: middle;
+}
+
+.popup {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: #2c313c;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  display: none;
+  z-index: 100;
+}
+
+.gallery {
+  column-width: 250px;
+  column-gap: 0px;
+}
+
+.gallery figure {
+  margin: 0.5rem;
+  margin-bottom: 1rem;
+  break-inside: avoid;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.gallery img {
+  width: 100%;
+  height: auto;
+  display: block;
+  background: rgba(0, 0, 0, 0.25);
+}
+
+.gallery figcaption {
+  text-align: center;
+  font-size: 12px;
+  padding: 6px 8px;
+  background: rgba(0, 0, 0, 0.25);
+}
+
+#lightbox {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+#lightbox img {
+  max-width: 95%;
+  max-height: 95%;
+  border-radius: 4px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+h1 {
+  margin-top: 0;
+  color: var(--accent);
+}
+
+h2 {
+  color: var(--green);
+}
+
+a {
+  color: #abb2bf;
+}
+
+.resume-img {
+  height: 300px;
+  border-radius: 4px;
+}
+
+/* На маленьких экранах скрываем sidebar */
+@media (max-width: 768px) {
+  body {
+    margin: 8px;
+    height: 100%;
+    flex-direction: column;
+  }
+
+  .activity-bar {
+    display: none;
+  }
+
+  .sidebar {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    background: none;
+    border: none;
+    padding: 0;
+  }
+
+  .main {
+    flex: 1;
+    margin-top: 1rem;
+  }
+
+  .gallery img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .resume-img {
+    width: 100%;
+    height: auto;
+  }
+}

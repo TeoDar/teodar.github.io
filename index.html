@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TeoDar — VSCode BlogFolio</title>
+  <link rel="stylesheet" href="src/styles.css" />
+  <link rel="stylesheet" href="assets/codicon/codicon.min.css" />
+  <link rel="icon" href="assets/images/me.png" type="image/x-icon">
+</head>
+
+<body>
+  <div class="activity-bar">
+    <span class="codicon codicon-files active" title="Explorer"></span>
+    <span class="codicon codicon-search" title="Search" onclick="showPopup(event)"></span>
+    <span class="codicon codicon-source-control" title="Git" onclick="showPopup(event)"></span>
+    <span class="codicon codicon-debug-alt" title="Debugger" onclick="showPopup(event)"></span>
+    <span class="codicon codicon-extensions" title="Extensions" onclick="showPopup(event)"></span>
+    <div class="activity-bar-bottom">
+      <a class="github codicon codicon-github-inverted" title="Account" href="https://github.com/TeoDar"
+        target="_blank"></a>
+      <span class="codicon codicon-vm" title="Profile" onclick="showPopup(event)"></span>
+    </div>
+  </div>
+
+  <div class="sidebar">
+    <h3>Explorer:</h3>
+    <div class="file" onclick="openFile(event)">
+      <span class="codicon codicon-markdown"></span> resume.md
+    </div>
+    <div class="file" onclick="openFile(event)">
+      <span class="codicon codicon-json"></span> about.json
+    </div>
+    <!-- <div class="file" onclick="openFile(event)">
+      <span class="codicon codicon-briefcase"></span> projects.py
+    </div> -->
+    <div class="file" onclick="openFile(event)">
+      <span class="codicon codicon-file-media"></span> images.png
+    </div>
+  </div>
+
+  <div class="main">
+    <div class="tabs" id="tabs"></div>
+    <div class="editor" id="editor"></div>
+    <div class="statusbar">
+      <span class="codicon codicon-source-control"></span>
+      main* &nbsp;
+      <span class="codicon codicon-sync"></span>
+
+      <div class="status-right">
+        UTF-8 CRLF { } HTML
+        <span class="codicon codicon-check-all"></span> Prettier
+      </div>
+    </div>
+  </div>
+
+  <div id="popup" class="popup">В разработке</div>
+
+  <script src="assets/marked/marked.min.js"></script>
+  <script src="src/app.js"></script>
+</body>
+
+</html>
