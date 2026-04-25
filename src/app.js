@@ -1,4 +1,7 @@
 let activeTabId = null;
+let lang =
+  localStorage.getItem("lang") ||
+  (navigator.language.startsWith("ru") ? "ru" : "en");
 
 const editor = document.getElementById("editor");
 const tabsContainer = document.getElementById("tabs");
@@ -53,16 +56,17 @@ async function createTab(id, label) {
 // --- load content ---
 async function loadContent(id) {
   try {
-    const res = await fetch(`src/content/${id}.md`);
+    const res = await fetch(`src/content/${lang}/${id}.md`);
     const md = await res.text();
-
+    return marked.parse(md);
+  } catch {
     try {
+      const res = await fetch(`src/content/ru/${id}.md`);
+      const md = await res.text();
       return marked.parse(md);
     } catch {
-      return `<pre>${md}</pre>`;
+      return `<p>Файл не найден 💀</p>`;
     }
-  } catch {
-    return `<p>Файл не найден 💀</p>`;
   }
 }
 
@@ -98,6 +102,30 @@ function closeTab(event, id) {
   }
 }
 
+function updateLangUI() {
+  const btn = document.getElementById("lang-toggle");
+  btn.textContent = lang.toUpperCase();
+}
+
+function toggleLang() {
+  lang = lang === "ru" ? "en" : "ru";
+  localStorage.setItem("lang", lang);
+
+  updateLangUI();
+
+  // перезагружаем текущий файл
+  if (activeTabId) {
+    reloadContent(activeTabId);
+  }
+}
+
+async function reloadContent(id) {
+  const container = document.getElementById(id);
+  if (!container) return;
+
+  container.innerHTML = await loadContent(id);
+}
+
 // --- popup ---
 function showPopup(event) {
   const popup = document.getElementById("popup");
@@ -123,4 +151,5 @@ function closeLightbox() {
 }
 
 // --- init ---
+updateLangUI();
 openFile({ currentTarget: { textContent: "resume.md" } });
